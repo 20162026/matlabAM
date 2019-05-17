@@ -172,6 +172,7 @@ global y1
 global y2
 global y3
 global mk
+mk=get(handles.slider1, 'Value')
 x=str2double(get(handles.edit1, 'String'));
 if ~isnan(x)
 f=x;
