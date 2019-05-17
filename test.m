@@ -67,14 +67,14 @@ T=1;
 t=0:1/fs1:(T-1/fs1);
 y1=sin(2*pi*5*t).';
 axes(handles.axes1);
-plot(t,y1)
-xlabel('Seconds');
+plot(t*1000,y1)
+xlabel('Miliseconds');
 ylabel('Amplitude');
 axes(handles.axes2);
-xlabel('Seconds');
+xlabel('Miliseconds');
 ylabel('Amplitude');
 axes(handles.axes3);
-xlabel('Seconds');
+xlabel('Miliseconds');
 ylabel('Amplitude');
 set(handles.edit3,'String',fs1);
 update(handles)
@@ -169,7 +169,10 @@ global t1
 t1= 0:dt1:(length(y1)*dt1)-dt1;
 set(handles.edit3,'String',fs1);
 axes(handles.axes1);
-plot(t1,y1);
+plot(t1*1000,y1);
+xlabel('Miliseconds');
+ylabel('Amplitude');
+
 
 
 function update(handles)
@@ -187,7 +190,13 @@ t=0:1/fs1:T;
 y2=sin(2*pi*f*t).';
 axes(handles.axes2);
 y3=y2.*(1+mk*y1);
-plot(t,y3)
+plot(t*1000,y3)
+xlabel('Miliseconds');
+ylabel('Amplitude');
+axes(handles.axes3);
+plot(t*1000,y2);
+xlabel('Miliseconds');
+ylabel('Amplitude');
 else
    fprintf('klaida:blogas daznis\n')
 end 
@@ -260,7 +269,9 @@ t1 = resample(t1,P,Q);
 T=(length(y1)*1/fs1)-(1/fs1);
 t1=0:1/fs1:T;
 axes(handles.axes1);
-plot(t1,y1)
+plot(t1*1000,y1)
+xlabel('Miliseconds');
+ylabel('Amplitude');
 update(handles)
 
 
