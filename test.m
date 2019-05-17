@@ -181,7 +181,7 @@ global y1
 global y2
 global y3
 global mk
-mk=get(handles.slider1, 'Value')
+mk=get(handles.slider1, 'Value');
 x=str2double(get(handles.edit1, 'String'));
 if ~isnan(x)
 f=x;
@@ -189,7 +189,7 @@ T=(length(y1)*1/fs1)-(1/fs1);
 t=0:1/fs1:T;
 y2=sin(2*pi*f*t).';
 axes(handles.axes2);
-y3=y2.*(1+mk*y1);
+y3=y1.*(1+mk*y2);
 plot(t*1000,y3)
 xlabel('Miliseconds');
 ylabel('Amplitude');
