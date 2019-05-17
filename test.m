@@ -68,7 +68,14 @@ t=0:1/fs1:(T-1/fs1);
 y1=sin(2*pi*5*t).';
 axes(handles.axes1);
 plot(t,y1)
-
+xlabel('Seconds');
+ylabel('Amplitude');
+axes(handles.axes2);
+xlabel('Seconds');
+ylabel('Amplitude');
+axes(handles.axes3);
+xlabel('Seconds');
+ylabel('Amplitude');
 set(handles.edit3,'String',fs1);
 update(handles)
 
@@ -163,8 +170,7 @@ t1= 0:dt1:(length(y1)*dt1)-dt1;
 set(handles.edit3,'String',fs1);
 axes(handles.axes1);
 plot(t1,y1);
-xlabel('Seconds');
-ylabel('Amplitude');
+
 
 function update(handles)
 global fs1
@@ -182,8 +188,6 @@ y2=sin(2*pi*f*t).';
 axes(handles.axes2);
 y3=y2.*(1+mk*y1);
 plot(t,y3)
-xlabel('Seconds');
-ylabel('Amplitude');
 else
    fprintf('klaida:blogas daznis\n')
 end 
@@ -257,8 +261,7 @@ T=(length(y1)*1/fs1)-(1/fs1);
 t1=0:1/fs1:T;
 axes(handles.axes1);
 plot(t1,y1)
-axes(handles.axes2);
-plot(t1,y3)
+update(handles)
 
 
 % --- Executes on slider movement.
