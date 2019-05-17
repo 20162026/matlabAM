@@ -19,11 +19,11 @@ function varargout = test(varargin)
 %      instance to run (singleton)".
 %
 % See also: GUIDE, GUIDATA, GUIHANDLES
-
+ 
 % Edit the above text to modify the response to help test
-
+ 
 % Last Modified by GUIDE v2.5 17-May-2019 04:22:00
-
+ 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
@@ -35,15 +35,15 @@ gui_State = struct('gui_Name',       mfilename, ...
 if nargin && ischar(varargin{1})
     gui_State.gui_Callback = str2func(varargin{1});
 end
-
+ 
 if nargout
     [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
 else
     gui_mainfcn(gui_State, varargin{:});
 end
 % End initialization code - DO NOT EDIT
-
-
+ 
+ 
 % --- Executes just before test is made visible.
 function test_OpeningFcn(hObject, eventdata, handles, varargin)
 % This function has no output args, see OutputFcn.
@@ -51,15 +51,19 @@ function test_OpeningFcn(hObject, eventdata, handles, varargin)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to test (see VARARGIN)
-
+ 
 % Choose default command line output for test
 handles.output = hObject;
-
+ 
 % Update handles structure
 guidata(hObject, handles);
-
+ 
 % UIWAIT makes test wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
+
+% =======================
+% pradinë grafiø bûsena peákëlus garso failo
+% =======================
 global y1
 global fs1
 fs1=22000;
@@ -78,78 +82,77 @@ xlabel('Miliseconds');
 ylabel('Amplitude');
 set(handles.edit3,'String',fs1);
 update(handles)
-
-
+ 
+ 
 % --- Outputs from this function are returned to the command line.
 function varargout = test_OutputFcn(hObject, eventdata, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+ 
 % Get default command line output from handles structure
 varargout{1} = handles.output;
-
-
-% --- Executes on button press in pushbutton1.
-function pushbutton1_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-update(handles)
-
+ 
 
 function edit1_Callback(hObject, eventdata, handles)
-% hObject    handle to edit1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit1 as text
-%        str2double(get(hObject,'String')) returns contents of edit1 as a double
+% =======================
+% teksto lango su daþniu pakeitimas
+% =======================
 update(handles)
-
+ 
 % --- Executes during object creation, after setting all properties.
 function edit1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
+% =======================
+% teksto lango su daþniu inicializacija
+% =======================
 set(hObject,'String','1');
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
+ 
+ 
 function edit2_Callback(hObject, eventdata, handles)
-% hObject    handle to edit2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit2 as text
-%        str2double(get(hObject,'String')) returns contents of edit2 as a double
-
-
+% =======================
+% teksto lango su failu pakeitimas
+% =======================
+ 
 % --- Executes during object creation, after setting all properties.
 function edit2_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
+% =======================
+% teksto lango su daþniu inicializacija
+% =======================
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
+function edit3_Callback(hObject, eventdata, handles)
+% =======================
+% teksto lango su sample rate pakeitimas
+% =======================
+ 
+% --- Executes during object creation, after setting all properties.
+function edit3_CreateFcn(hObject, eventdata, handles)
+% =======================
+% teksto lango su sample rate inicializacija
+% =======================
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+% --- Executes on button press in pushbutton1.
+function pushbutton1_Callback(hObject, eventdata, handles)
+% =======================
+% mygtuko “change” paspaudimas
+% =======================
+update(handles)
 
 % --- Executes on button press in pushbutton2.
 function pushbutton2_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-[file,path] = uigetfile('*.wav');
+% =======================
+% mygtuko load paspaudimas
+% =======================
+ [file,path] = uigetfile('*.wav');
 if isequal(file,0)
    disp('User selected Cancel');
 else
@@ -157,9 +160,71 @@ else
    set(handles.edit2,'String',fullfile(path,file));
    ufile(handles);
 end
+ 
+% --- Executes on button press in pushbutton3.
+function pushbutton3_Callback(hObject, eventdata, handles)
+% =======================
+% pradinio signalo play mygtuko paspaudimas
+% =======================
+play1()
+ 
+% --- Executes on button press in pushbutton3.
+function pushbutton4_Callback(hObject, eventdata, handles)
+% =======================
+% moduliuoto signalo play mygtuko paspaudimas
+% =======================
+play2()
+% --- Executes on button press in pushbutton6.
+function pushbutton6_Callback(hObject, eventdata, handles)
+% =======================
+% sample rate pakeitimo mygtuko paspaudimas
+% =======================
+global y1
+global fs1
+global t1
+global y2
+global y3
+fs=str2double(get(handles.edit3, 'String'));
+[P,Q] = rat(fs/fs1);
+fs1=fs;
+y1 = resample(y1,P,Q);
+y2 = resample(y2,P,Q);
+y3 = resample(y3,P,Q);
+t1 = resample(t1,P,Q);
+T=(length(y1)*1/fs1)-(1/fs1);
+t1=0:1/fs1:T;
+axes(handles.axes1);
+plot(t1*1000,y1)
+xlabel('Miliseconds');
+ylabel('Amplitude');
+update(handles)
+ 
+% --- Executes on slider movement.
+function slider1_Callback(hObject, eventdata, handles)
+% =======================
+% slider1 vertës pakytimo funkcija
+% =======================
+global mk
+mk=get(handles.slider1, 'Value');
+set(handles.text6, 'String',mk)
+update(handles)
+ 
+ 
+% --- Executes during object creation, after setting all properties.
+function slider1_CreateFcn(hObject, eventdata, handles)
+% =======================
+% slider1 inicializacija
+% =======================
+if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor',[.9 .9 .9]);
+end
+
 
 
 function ufile(handles)
+% =======================
+% failo ákëlimo funkcija
+% =======================
 global y1 
 global fs1
 [y1,fs1]=audioread(get(handles.edit2,'String'));
@@ -172,9 +237,11 @@ axes(handles.axes1);
 plot(t1*1000,y1);
 xlabel('Miliseconds');
 ylabel('Amplitude');
-
-
-
+ 
+ 
+% =======================
+% neðanèio signalo sukûrimo ir moduliavimo funkcija
+% =======================
 function update(handles)
 global fs1
 global y1
@@ -200,102 +267,15 @@ ylabel('Amplitude');
 else
    fprintf('klaida:blogas daznis\n')
 end 
-
+% =======================
+% garso signalo atkûrimo funkcijos
+% =======================
 function play1()
 global fs1
 global y1
 sound(y1,fs1);
-
+ 
 function play2()
 global fs1
 global y3
 sound(y3,fs1);
-
-% --- Executes on button press in pushbutton3.
-function pushbutton3_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton3 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-play1()
-
-% --- Executes on button press in pushbutton3.
-function pushbutton4_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton3 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-play2()
-
-
-
-function edit3_Callback(hObject, eventdata, handles)
-% hObject    handle to edit3 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit3 as text
-%        str2double(get(hObject,'String')) returns contents of edit3 as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function edit3_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit3 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on button press in pushbutton6.
-function pushbutton6_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton6 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-global y1
-global fs1
-global t1
-global y2
-global y3
-fs=str2double(get(handles.edit3, 'String'));
-[P,Q] = rat(fs/fs1);
-fs1=fs;
-y1 = resample(y1,P,Q);
-y2 = resample(y2,P,Q);
-y3 = resample(y3,P,Q);
-t1 = resample(t1,P,Q);
-T=(length(y1)*1/fs1)-(1/fs1);
-t1=0:1/fs1:T;
-axes(handles.axes1);
-plot(t1*1000,y1)
-xlabel('Miliseconds');
-ylabel('Amplitude');
-update(handles)
-
-
-% --- Executes on slider movement.
-function slider1_Callback(hObject, eventdata, handles)
-% hObject    handle to slider1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'Value') returns position of slider
-%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-global mk
-mk=get(handles.slider1, 'Value')
-set(handles.text6, 'String',mk)
-update(handles)
-
-
-% --- Executes during object creation, after setting all properties.
-function slider1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: slider controls usually have a light gray background.
-if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor',[.9 .9 .9]);
-end
