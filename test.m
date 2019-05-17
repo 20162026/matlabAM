@@ -2,7 +2,7 @@ function varargout = test(varargin)
 % test MATLAB code for test.fig
 %      test, by itself, creates a new test or raises the existing
 %      singleton*.
-%
+% test git
 %      H = test returns the handle to a new test or the handle to
 %      the existing singleton*.
 %
